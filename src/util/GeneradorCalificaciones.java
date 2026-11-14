@@ -32,7 +32,16 @@ public final class GeneradorCalificaciones {
         double[] notas = aleatorias(n, random);
         BubbleSort.ordenarAscendente(notas);
         for (int k = 0; k < desordenes && n > 1; k++) {
-            int i = random.nextInt(n - 1);
+            // Se busca una pareja de vecinos DIFERENTES; intercambiar dos notas iguales
+            // no desordenaría nada (hay solo 51 notas posibles y se repiten mucho).
+            int inicio = random.nextInt(n - 1);
+            int i = inicio;
+            while (notas[i] == notas[i + 1]) {
+                i = (i + 1) % (n - 1);
+                if (i == inicio) {
+                    return notas; // todas las notas son iguales: no se puede desordenar
+                }
+            }
             double tmp = notas[i];
             notas[i] = notas[i + 1];
             notas[i + 1] = tmp;
