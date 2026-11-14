@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Menú interactivo",
+      "request": "launch",
+      "mainClass": "app.Main",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "java",
+      "name": "Demostración completa",
+      "request": "launch",
+      "mainClass": "app.Main",
+      "args": "demo",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "java",
+      "name": "Pruebas",
+      "request": "launch",
+      "mainClass": "PruebasBubbleSort",
+      "console": "integratedTerminal"
+    }
+  ]
+}
