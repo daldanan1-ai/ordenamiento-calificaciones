@@ -47,6 +47,38 @@ public final class BubbleSort {
         return est;
     }
 
+    /**
+     * Ordena el arreglo IN-PLACE de mayor a menor.
+     *
+     * Es el mismo algoritmo; la ÚNICA modificación es la condición de intercambio:
+     * se intercambia cuando el de la izquierda es MENOR que el de la derecha (<).
+     * Así, en cada pasada es el menor el que "sube" al final.
+     *
+     * Complejidad: igual que la versión ascendente.
+     */
+    public static Estadisticas ordenarDescendente(double[] a) {
+        Estadisticas est = new Estadisticas();
+        if (a == null || a.length < 2) {
+            return est;
+        }
+        for (int limite = a.length; limite > 1; limite--) {
+            est.sumarPasada();
+            boolean huboIntercambio = false;
+            for (int i = 1; i < limite; i++) {
+                est.sumarComparacion();
+                if (a[i - 1] < a[i]) {          // cambio clave respecto a la ascendente
+                    intercambiar(a, i - 1, i);
+                    est.sumarIntercambio();
+                    huboIntercambio = true;
+                }
+            }
+            if (!huboIntercambio) {
+                break;
+            }
+        }
+        return est;
+    }
+
     private static void intercambiar(double[] a, int i, int j) {
         double temporal = a[i];
         a[i] = a[j];
