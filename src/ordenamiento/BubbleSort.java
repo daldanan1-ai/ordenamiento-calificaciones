@@ -1,5 +1,8 @@
 package ordenamiento;
 
+import java.io.PrintStream;
+import util.Arreglos;
+
 /**
  * Ordenamiento Burbuja (Bubble Sort) para calificaciones, implementado manualmente.
  *
@@ -25,6 +28,11 @@ public final class BubbleSort {
      * Es estable: dos calificaciones iguales nunca se intercambian.
      */
     public static Estadisticas ordenarAscendente(double[] a) {
+        return ordenarAscendente(a, null);
+    }
+
+    /** Igual que la anterior; si traza no es null, imprime el arreglo tras cada pasada. */
+    public static Estadisticas ordenarAscendente(double[] a, PrintStream traza) {
         Estadisticas est = new Estadisticas();
         if (a == null || a.length < 2) {
             return est;
@@ -39,6 +47,10 @@ public final class BubbleSort {
                     est.sumarIntercambio();
                     huboIntercambio = true;
                 }
+            }
+            if (traza != null) {
+                traza.printf("  Pasada %d: %s%s%n", est.getPasadas(), Arreglos.formatear(a),
+                        huboIntercambio ? "" : "  <- sin intercambios: termina");
             }
             if (!huboIntercambio) {
                 break; // ninguna pareja estaba desordenada: el arreglo ya está ordenado
@@ -57,6 +69,11 @@ public final class BubbleSort {
      * Complejidad: igual que la versión ascendente.
      */
     public static Estadisticas ordenarDescendente(double[] a) {
+        return ordenarDescendente(a, null);
+    }
+
+    /** Igual que la anterior; si traza no es null, imprime el arreglo tras cada pasada. */
+    public static Estadisticas ordenarDescendente(double[] a, PrintStream traza) {
         Estadisticas est = new Estadisticas();
         if (a == null || a.length < 2) {
             return est;
@@ -71,6 +88,10 @@ public final class BubbleSort {
                     est.sumarIntercambio();
                     huboIntercambio = true;
                 }
+            }
+            if (traza != null) {
+                traza.printf("  Pasada %d: %s%s%n", est.getPasadas(), Arreglos.formatear(a),
+                        huboIntercambio ? "" : "  <- sin intercambios: termina");
             }
             if (!huboIntercambio) {
                 break;
